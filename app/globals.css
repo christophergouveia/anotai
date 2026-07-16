@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&display=swap");
+@import "tailwindcss";
+
+body {
+  background-color: rgba(255, 255, 208, 0.8);
+}
+
+h1,
+h2 {
+  font-family: "Cabin Sketch", sans-serif;
+}
+
+main {
+  margin: 6rem auto;
+}
+
+#header {
+  text-align: center;
+}
+
+.titulo {
+  font-size: 6rem;
+  font-weight: bold;
+  line-height: 4.5rem;
+}
+
+.subtitulo {
+  font-size: 2rem;
+}
+
