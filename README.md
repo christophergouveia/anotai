@@ -23,8 +23,8 @@ O projeto ainda está no início do desenvolvimento e conterá muitas funcionali
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/christophergouveia/anotado.git
-cd anotado
+git clone https://github.com/christophergouveia/anotai.git
+cd anotai
 ```
 
 2. Instale as dependências:
