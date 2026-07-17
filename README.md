@@ -1,6 +1,6 @@
 # Anotaí!
 
-Anotaí! é um site/aplicativo moderno para gerenciar anotações em telas flutuantes, facilitando o acesso rápido e a leitura intuitiva das informações importantes. O projeto foi criado para oferecer uma experiência suave com anotações organizadas e visuais leves.
+Anotaí! é um site/aplicativo (Tauri) moderno para gerenciar anotações em telas flutuantes, facilitando o acesso rápido e a leitura intuitiva das informações importantes. O projeto foi criado para oferecer uma experiência suave com anotações organizadas e visuais leves.
 
 O projeto ainda está no início do desenvolvimento e conterá muitas funcionalidades (inclusive as abaixo) =)
 
@@ -13,39 +13,34 @@ O projeto ainda está no início do desenvolvimento e conterá muitas funcionali
 
 ## Tecnologias
 
-- Next.js
-- React
+- [Next.js 16](https://nextjs.org/)
+- React 19
 - TypeScript
-- Tailwind CSS
+- Tailwind CSS 4
+- [Tauri 2](https://tauri.app/) (build desktop)
 
-## Como usar
-
-1. Clone o repositório:
-
-```bash
-git clone https://github.com/christophergouveia/anotai.git
-cd anotai
-```
-
-2. Instale as dependências:
+## Como rodar (web)
 
 ```bash
 npm install
-```
-
-3. Inicie o servidor de desenvolvimento:
-
-```bash
 npm run dev
 ```
 
-4. Abra o navegador em `http://localhost:3000` para ver o aplicativo em ação.
+Abra `http://localhost:3000`.
 
-## Contribuição
+## Como rodar (desktop)
 
-Contribuições são bem-vindas! Se quiser adicionar novas funcionalidades ou melhorias, abra uma issue ou envie um pull request.
+```bash
+npm install
+npm run tauri:dev
+```
+
+## Como gerar o instalador (desktop)
+
+```bash
+npm run tauri:build
+```
 
 ## Licença
 
-Este projeto está licenciado sob a Licença MIT. Veja o arquivo `LICENSE.txt` para mais detalhes.
-
+MIT. Veja `LICENSE.txt`.
