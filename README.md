@@ -2,8 +2,6 @@
 
 Anotaí! é um site/aplicativo (Tauri) moderno para gerenciar anotações em telas flutuantes, facilitando o acesso rápido e a leitura intuitiva das informações importantes. O projeto foi criado para oferecer uma experiência suave com anotações organizadas e visuais leves.
 
-O projeto ainda está no início do desenvolvimento e conterá muitas funcionalidades (inclusive as abaixo) =)
-
 ## Principais recursos
 
 - Anotações em telas flutuantes para visualização rápida

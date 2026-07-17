@@ -1,6 +1,8 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import { VscLinkExternal } from "react-icons/vsc";
+import { openNoteWindow } from "../lib/note-window";
 
 export type NoteColor = "yellow" | "pink" | "blue" | "mint";
 
@@ -32,6 +34,10 @@ export function Note({ data, onChange, onDelete }: NoteProps) {
       bodyRef.current.innerText = data.body;
     }
   }, [data.body]);
+
+  const handleOpen = () => {
+    void openNoteWindow(data.id);
+  };
 
   return (
     <article
@@ -65,6 +71,16 @@ export function Note({ data, onChange, onDelete }: NoteProps) {
         data-placeholder="Escreva algo..."
         onBlur={(e) => onChange({ body: e.currentTarget.innerText })}
       />
+
+      <button
+        type="button"
+        className="note__open"
+        aria-label="Abrir em uma janela flutuante"
+        title="Abrir em uma janela flutuante"
+        onClick={handleOpen}
+      >
+        <VscLinkExternal />
+      </button>
     </article>
   );
 }

@@ -186,3 +186,144 @@ main {
   font-size: 1.6rem;
   line-height: 1;
 }
+
+.note__open {
+  background-color: #9e9e9e;
+  border-radius: 0.512rem;
+  padding: 0.3rem 0.6rem;
+  width: fit-content;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.note-window {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  user-select: none;
+}
+
+.note-window__toolbar {
+  -webkit-app-region: drag;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.35rem 0.5rem 0.25rem;
+  flex-shrink: 0;
+  min-height: 32px;
+}
+
+.note-window__close {
+  -webkit-app-region: no-drag;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  border: none;
+  font-size: 0.95rem;
+}
+
+.note-window__close:hover {
+  background: rgba(220, 60, 60, 0.85);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.note-window__close:active {
+  transform: scale(0.95);
+}
+
+.note-window__body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.note-window__empty {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.note-window__empty button {
+  -webkit-app-region: no-drag;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.08);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.note-window__empty button:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.floating-note {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.1rem 1.1rem 1.3rem;
+  border-radius: 2px;
+  min-height: 0;
+  user-select: text;
+  -webkit-user-select: text;
+  -webkit-app-region: no-drag;
+}
+
+.floating-note--yellow { background-color: var(--note-yellow); }
+.floating-note--pink   { background-color: var(--note-pink); }
+.floating-note--blue   { background-color: var(--note-blue); }
+.floating-note--mint   { background-color: var(--note-mint); }
+
+.floating-note__title {
+  font-family: "Cabin Sketch", cursive;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ink);
+  outline: none;
+  word-break: break-word;
+  cursor: text;
+}
+
+.floating-note__body {
+  font-family: "Cabin Sketch", cursive;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  color: var(--ink);
+  flex: 1;
+  white-space: pre-wrap;
+  word-break: break-word;
+  outline: none;
+  cursor: text;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.floating-note__title:empty::before,
+.floating-note__body:empty::before {
+  content: attr(data-placeholder);
+  color: rgba(43, 42, 38, 0.35);
+  font-style: italic;
+}
+
+.floating-note__title:focus::before,
+.floating-note__body:focus::before {
+  content: none;
+}

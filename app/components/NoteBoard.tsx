@@ -1,74 +1,37 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useCallback } from "react";
 import { Note, type NoteData, type NoteColor } from "./Note";
+import useNotes from "../hooks/useNotes";
 
-const STORAGE_KEY = "anotai:notes";
 const COLORS: NoteColor[] = ["yellow", "pink", "blue", "mint"];
 
 function newId(): string {
   return Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
 }
 
-function loadNotes(): NoteData[] {
-  if (typeof window === "undefined") return [];
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return seedNotes();
-    const parsed = JSON.parse(raw);
-    if (!Array.isArray(parsed)) return [];
-    return parsed as NoteData[];
-  } catch {
-    return [];
-  }
-}
-
-function seedNotes(): NoteData[] {
-  return [
-    {
-      id: newId(),
-      title: "Bem-vindo!",
-      body: "Clique em qualquer lugar para editar. Passe o mouse pra ver o botão de apagar. Use o cartão pontilhado pra criar mais.",
-      color: "yellow"
-    }
-  ];
-}
-
 export function NoteBoard() {
-  const [notes, setNotes] = useState<NoteData[]>([]);
-  const [hydrated, setHydrated] = useState(false);
+  const [notes, setNotes, hydrated] = useNotes();
 
-  useEffect(() => {
-    setNotes(loadNotes());
-    setHydrated(true);
-  }, []);
+  const updateNote = useCallback(
+    (id: string, patch: Partial<NoteData>) => {
+      setNotes((prev) => prev.map((n) => (n.id === id ? { ...n, ...patch } : n)));
+    },
+    [setNotes]
+  );
 
-  useEffect(() => {
-    if (!hydrated) return;
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
-    } catch {
-    }
-  }, [notes, hydrated]);
-
-  const updateNote = useCallback((id: string, patch: Partial<NoteData>) => {
-    setNotes((prev) =>
-      prev.map((n) => (n.id === id ? { ...n, ...patch } : n))
-    );
-  }, []);
-
-  const deleteNote = useCallback((id: string) => {
-    setNotes((prev) => prev.filter((n) => n.id !== id));
-  }, []);
+  const deleteNote = useCallback(
+    (id: string) => {
+      setNotes((prev) => prev.filter((n) => n.id !== id));
+    },
+    [setNotes]
+  );
 
   const addNote = useCallback(() => {
     const id = newId();
     const color = COLORS[Math.floor(Math.random() * COLORS.length)];
-    setNotes((prev) => [
-      { id, title: "", body: "", color},
-      ...prev,
-    ]);
-  }, []);
+    setNotes((prev) => [{ id, title: "", body: "", color }, ...prev]);
+  }, [setNotes]);
 
   return (
     <div className="notes">
