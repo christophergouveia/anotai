@@ -1,18 +1,16 @@
-import Image from "next/image";
+import { NoteBoard } from "./components/NoteBoard";
 
 export default function Home() {
   return (
     <main>
-      <section id="header">
-        <h1 className="titulo">anotaí</h1>
-        <h2 className="subtitulo">
+      <header className="header">
+        <h1 className="header__title">anotaí</h1>
+        <p className="header__sub">
           Uma maneira mais fácil e inteligente de não esquecer suas anotações.
-        </h2>
-      </section>
+        </p>
+      </header>
 
-      <section id="anotacoes">
-        <span>Suas anotações:</span>
-      </section>
+      <NoteBoard />
     </main>
   );
 }
