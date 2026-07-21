@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 import "./globals.css";
+import { UpdateChecker } from "./components/UpdateChecker";
+import { NotesProvider } from "./context/NotesContext";
 
 export const metadata: Metadata = {
   title: "Anotaí!",
@@ -19,7 +21,12 @@ export default function RootLayout({
       className={`h-full antialiased`}
       suppressHydrationWarning={true}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <NotesProvider>
+          {children}
+          <UpdateChecker />
+        </NotesProvider>
+      </body>
     </html>
   );
 }

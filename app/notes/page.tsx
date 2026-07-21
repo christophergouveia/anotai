@@ -1,10 +1,10 @@
 "use client";
 
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { VscChromeClose } from "react-icons/vsc";
-import useNotes from "../hooks/useNotes";
+import { useNotesContext } from "../context/NotesContext";
 import type { NoteData } from "../components/Note";
 
 function FloatingNote({
@@ -54,7 +54,7 @@ function FloatingNote({
 function NotePageInner() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
-  const [notes, setNotes, hydrated] = useNotes();
+  const { notes, updateNote, hydrated } = useNotesContext();
 
   const handleClose = async () => {
     try {
@@ -66,11 +66,6 @@ function NotePageInner() {
   };
 
   const note = id ? notes.find((n) => n.id === id) : undefined;
-
-  const updateNote = (patch: Partial<NoteData>) => {
-    if (!id) return;
-    setNotes((prev) => prev.map((n) => (n.id === id ? { ...n, ...patch } : n)));
-  };
 
   if (!hydrated) return null;
 
@@ -90,7 +85,7 @@ function NotePageInner() {
 
       <div className="note-window__body">
         {note ? (
-          <FloatingNote note={note} onChange={updateNote} />
+          <FloatingNote note={note} onChange={(patch) => updateNote(note.id, patch)} />
         ) : (
           <div className="note-window__empty">
             <p>Esta anotação não existe mais.</p>
