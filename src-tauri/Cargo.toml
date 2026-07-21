@@ -1,6 +1,6 @@
 [package]
 name = "anotai"
-version = "0.1.0"
+version = "0.1.1"
 description = "Anotaí! - Anotações mais facéis."
 authors = ["Christopher"]
 edition = "2021"
@@ -15,6 +15,7 @@ tauri-build = { version = "2", features = [] }
 
 [dependencies]
 tauri = { version = "2", features = [] }
+tauri-plugin-autostart = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 
@@ -24,3 +25,6 @@ codegen-units = 1
 lto = true
 opt-level = "s"
 strip = true
+
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
+tauri-plugin-autostart = "2"

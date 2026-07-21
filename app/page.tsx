@@ -1,4 +1,5 @@
 import { NoteBoard } from "./components/NoteBoard";
+import { AutostartButton } from "./components/AutostartButton";
 
 export default function Home() {
   return (
@@ -11,6 +12,10 @@ export default function Home() {
       </header>
 
       <NoteBoard />
+
+      <div className="autostart-container">
+        <AutostartButton />
+      </div>
     </main>
   );
 }
